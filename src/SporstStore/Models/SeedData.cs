@@ -1,5 +1,6 @@
 ﻿//exemplary data
 
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,8 +9,10 @@ namespace SportsStore.Models
 {
     public static class SeedData
     {
-        public static void EnsurePopulated(IApplicationBuilder app, ApplicationDbContext context)
+        public static void EnsurePopulated(IServiceProvider services)
         {
+            var context = services.GetRequiredService<ApplicationDbContext>();
+
             if (!context.Products.Any())
             {
                 context.Products.AddRange(
@@ -82,4 +85,3 @@ namespace SportsStore.Models
         }
     }
 }
- 

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStore", "src\SporstStore\SportsStore.csproj", "{44D58778-A6C1-43F3-B691-C32F4798A3D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsStore", "src\SporstStore\SportsStore.csproj", "{44D58778-A6C1-43F3-B691-C32F4798A3D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStoreTests", "test\SportsStoreTests\SportsStoreTests.csproj", "{92466EE5-4CFE-4344-94CA-B3BBE39F0D9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsStoreTests", "test\SportsStoreTests\SportsStoreTests.csproj", "{92466EE5-4CFE-4344-94CA-B3BBE39F0D9F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5924E6BF-F7F4-44C6-A5A5-E9FC4783E5B6}"
 EndProject

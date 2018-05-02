@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -10,15 +9,12 @@ namespace SportsStore
 {
     public class Startup
     {
-        IConfigurationRoot Configuration;
-
-        //adding appsetting.json file (with connection string) to configuration :O
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            Configuration = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json").Build();
+            Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -26,16 +22,12 @@ namespace SportsStore
         {
             //DB context using connection string from json file
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration["Data:SportStoreProducts:ConnectionString"]));
+                options.UseSqlServer(Configuration.GetConnectionString("SportStoreProducts")));
 
             //when controller needs IProductRepository, its implementation - EF Product Repository will be delivered
             services.AddTransient<IProductRepository, EFProductRepository>();
 
             services.AddMvc();
-
-            //            // Build the intermediate service provider then return it
-            //            return services.BuildServiceProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,9 +49,6 @@ namespace SportsStore
                     name: "default",
                     template: "{controller=Product}/{action=List}/{id?}");
             });
-
-            //populates data
-            SeedData.EnsurePopulated(app, context);
         }
     }
 }
